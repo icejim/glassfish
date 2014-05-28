@@ -1,0 +1,19 @@
+Glassfish Connection Validation Settings ( all to be found in the administration console>connection pools> advanced)
+
+Statement Cache Size: 200 (that means 200 statements will be cached / thread – watch out with this one, don’t set it too high if you are Storage bound)
+
+Wrap JDBC Objects: Enabled
+
+Pooling: Enabled
+
+Validate at most once: 60 seconds
+
+Connection validation: required
+
+Validation method: table
+
+Table name: dual
+
+And this is how the connection parameter looks in the domain.xml file, if you want to set it manually:
+
+<jdbc-connection-pool validation-table-name=”DUAL” max-pool-size=”200″ datasource-classname=”oracle.jdbc.pool.OracleDataSource” pool-resize-quantity=”10″ res-type=”javax.sql.DataSource” steady-pool-size=”50″ statement-cache-size=”200″ name=”myPool” is-connection-validation-required=”true” validate-atmost-once-period-in-seconds=”60″>
